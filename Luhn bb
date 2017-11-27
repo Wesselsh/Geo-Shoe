@@ -1,0 +1,36 @@
+def luhn_check_card(credit_card):
+    numbers = []
+    for digit in credit_card:
+        numbers.append(digit)
+
+    num = numbers[::2]
+
+    odd_num = numbers[1:len(numbers):2]
+    doubles = []
+
+    for ch in num:
+        n = int(ch) * 2
+        doubles.append(n)
+
+    even_digits = []
+
+    for even in doubles:
+        if even >= 10:
+            two_digit = []
+            string_digit = str(even)
+            for digits in string_digit:
+                two_digit.append(digits)
+            first_digit = int(two_digit.pop())
+            second_digit = int(two_digit.pop())
+            summed_digit = first_digit + second_digit
+            even_digits.append(summed_digit)
+        else:
+            even_digits.append(even)
+
+   
+    even_digits = [int(m) for m in even_digits]
+    odd_num = [int(j) for j in odd_num]
+    total = sum(odd_num) + sum(even_digits)
+
+ 
+    return total % 10
